@@ -27,6 +27,7 @@ pub struct ColorHolder<B>{
     hidden: bool,
     reversed: bool,
     strikethrough: bool,
+    dimmed: bool,
 }
 pub trait Colorized : Sized {
     fn color(self, fg: Color) -> ColorHolder<Self> {
@@ -43,12 +44,12 @@ pub trait Colorized : Sized {
             hidden: Default::default(),
             reversed: Default::default(),
             strikethrough: Default::default(),
+            dimmed: Default::default(),
         }
     }
     fn attribute(self) -> ColorHolder<Self> {
         ColorHolder {
-            inner: self,
-            fg: Default::default(),
+            inner: self,fg:Default::default(),
             bg: Default::default(),
             bright: Default::default(),
             bright_bg: Default::default(),
@@ -59,6 +60,7 @@ pub trait Colorized : Sized {
             hidden: Default::default(),
             reversed: Default::default(),
             strikethrough: Default::default(),
+            dimmed: Default::default(),
         }
     }
     fn on(self) -> ColorHolder<Self> {
@@ -129,6 +131,11 @@ pub trait Colorized : Sized {
     fn reversed(self) -> ColorHolder<Self> {
           let mut res = self.attribute();
           res.reversed = true;
+          res
+    }
+    fn dimmed(self) -> ColorHolder<Self> {
+        let mut res = self.attribute();
+          res.dimmed = true;
           res
     }
 }
@@ -210,6 +217,10 @@ impl<T> ColorHolder<T> {
         self.blink = true;
         self
     }
+    pub fn dimmed(mut self) -> Self {
+        self.dimmed = true;
+        self
+    }
 
     fn ansi(&self) -> String {
         let mut color = String::new();
@@ -231,6 +242,7 @@ impl<T> ColorHolder<T> {
         if self.strikethrough { color.push('9'); color.push(';')}
         if self.reversed { color.push('7'); color.push(';')}
         if self.hidden { color.push('8'); color.push(';')}
+        if self.dimmed { color.push('2'); color.push(';')}
         color
     }
 }

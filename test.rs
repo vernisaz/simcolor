@@ -38,7 +38,8 @@ fn main() {
     println!("1{}3", "2".hidden());
     println!("{}", "blink".blink());
     println!("{}", "blink fast".blink_fast());
-
+    println!("{}", "dimmed text".bright().green().dimmed());
+    
     // foreground and background
     let red_on_white = "red on white".red().on().white();
     println!("{}", red_on_white);
