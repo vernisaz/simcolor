@@ -121,11 +121,11 @@ pub trait Colorized : Sized {
           res.underline = true;
           res
     }
-    /*fn italic(self) -> ColorHolder<Self> {
+    fn bright(self) -> ColorHolder<Self> {
           let mut res = self.attribute();
-          res.italic = true;
+          res.bright = true;
           res
-    }*/
+    }
     fn reversed(self) -> ColorHolder<Self> {
           let mut res = self.attribute();
           res.reversed = true;
