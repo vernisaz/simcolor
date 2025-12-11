@@ -9,7 +9,29 @@ and [OWO-Colors](https://github.com/owo-colors/owo-colors). So, this crate was i
 
 As usually the **Simple Color** is a very minimalistic Rust crate.
 
-## Features
+### Colors:
+
+- black
+- red
+- green
+- yellow
+- blue
+- magenta (or purple)
+- cyan
+- white
+
+### Styles:
+
+- bold
+- underline
+- italic
+- dimmed
+- reversed
+- blink
+- hidden
+- strikethrough
+- 
+### Features
 
 - Safe rust, easy to use, minimal dependencies, complete test suite
 - Respect the `CLICOLOR`/`CLICOLOR_FORCE` behavior (see [the specs](http://bixense.com/clicolors/))
