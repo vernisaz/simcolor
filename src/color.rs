@@ -1,4 +1,5 @@
-use std::{fmt,env,io::{IsTerminal,self},sync::LazyLock};
+use std::{fmt,env,io::{IsTerminal,self},sync::LazyLock,error::Error};
+
 #[derive(Default, Debug, Clone, PartialEq)] 
 pub enum Color {
     Black,
@@ -13,7 +14,7 @@ pub enum Color {
     Notset,
     Unset,
 }
-#[derive(Debug, Clone)] 
+#[derive(Clone)] //Debug, 
 pub struct ColorHolder<B>{
     inner: B,
     fg: Color,
@@ -272,6 +273,11 @@ where
         }
     }
 }
+impl<S: fmt::Display> fmt::Debug for ColorHolder<S> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        fmt::Display::fmt(self, f)
+    }
+}
 impl fmt::LowerHex for ColorHolder<u32> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         
@@ -291,6 +297,7 @@ impl fmt::LowerHex for ColorHolder<u32> {
 impl Colorized for &str {}
 impl Colorized for String {}
 impl Colorized for u32 {}
+impl<S: std::fmt::Display + std::fmt::Debug> Error for ColorHolder<S> {}
 pub static ENABLE_COLOR: LazyLock<bool> = LazyLock::new(from_env);
 
 fn from_env() -> bool {

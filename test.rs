@@ -1,8 +1,9 @@
 extern crate simcolor;
+use std::error::Error;
 use simcolor::{Colorized};
 
 
-fn main() {
+fn main()-> Result<(), Box<dyn Error>> {
     // Foreground colors
     println!("My number is {:#x}!", 10.green());
     // Background colors
@@ -47,6 +48,6 @@ fn main() {
     let s = "hello, world".strikethrough().bold().green();
     println!("{s}");
     let color = "strikethrough".strikethrough().green();
-    println!("{color}")
-
+    println!("{color}");
+    Err("The test failed successfully".red())?
 }
