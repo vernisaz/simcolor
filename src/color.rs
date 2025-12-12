@@ -296,7 +296,8 @@ pub static ENABLE_COLOR: LazyLock<bool> = LazyLock::new(from_env);
 fn from_env() -> bool {
      (env::var("CLICOLOR").and_then(|val| Ok(val == "true")).unwrap_or(false)
         || io::stdout().is_terminal()
-        || env::var("TERM").and_then(|val| Ok(val.contains("color"))).unwrap_or(false)
-        || env::var("CLICOLOR_FORCE").and_then(|val| Ok(val != "false")).unwrap_or(false))
-        && !env::var("NO_COLOR").and_then(|val| Ok(val != "true")).unwrap_or(false)
+        || env::var("TERM").and_then(|val| Ok(val.contains("color"))).unwrap_or(false))
+       // || env::var("CLICOLOR_FORCE").and_then(|val| Ok(val != "false")).unwrap_or(false))
+        && (!env::var("NO_COLOR").and_then(|val| Ok(val == "true")).unwrap_or(false) 
+        || env::var("CLICOLOR_FORCE").and_then(|val| Ok(val != "false")).unwrap_or(false)) 
 }
