@@ -269,7 +269,14 @@ where
         if !*ENABLE_COLOR || color.is_empty() {
             write!(f, "{}", self.inner)
         } else {
-            write!(f, "\x1b[{color}m{}\x1b[0m", self.inner)
+            let mut fmt_str = format!("{}", self.inner);
+            while let Some(stripped_str) = fmt_str.strip_suffix("\x1b[0m") {
+                fmt_str = stripped_str.to_string()
+            }
+            if let Some(offset) = fmt_str.find("\x1b[0m") { // loop???
+                fmt_str.replace_range(offset..4+offset, &format!("\x1b[0m\x1b[{color}m"));
+            }
+            write!(f, "\x1b[{color}m{fmt_str}\x1b[0m")//, self.inner)
         }
     }
 }

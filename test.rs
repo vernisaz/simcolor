@@ -13,7 +13,7 @@ fn main()-> Result<(), Box<dyn Error>> {
     println!("{}", "green".green());
     println!("{}", "yellow".yellow());
     println!("{}", "blue".blue());
-    println!("{}", "black".black());
+    println!("{}", "black".black().on().white());
 
     println!("{}", "red".red());
     println!("{}", "magenta".magenta());
@@ -44,10 +44,15 @@ fn main()-> Result<(), Box<dyn Error>> {
     // foreground and background
     let red_on_white = "red on white".red().on().white();
     println!("{}", red_on_white);
-    
-    let s = "hello, world".strikethrough().bold().green();
-    println!("{s}");
+    let world = "world".green().bright().bold();
+    let s = "hello".strikethrough();
+    println!("{s}, {world}");
     let color = "strikethrough".strikethrough().green();
     println!("{color}");
+     let world = "world".bold();
+    let hello_world = format!("Hello, {world}!");
+    println!("{hello_world}");
+    let hello_world = format!("Hello, {world}!lalalala").red();
+    println!("{hello_world}");
     Err("The test failed successfully".red())?
 }
