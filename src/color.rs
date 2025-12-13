@@ -273,11 +273,20 @@ where
             while let Some(stripped_str) = fmt_str.strip_suffix("\x1b[0m") {
                 fmt_str = stripped_str.to_string()
             }
-            if let Some(offset) = fmt_str.find("\x1b[0m") { // loop???
+            let mut current = 0;
+            while let Some(offset) = find_after(&fmt_str, "\x1b[0m", current) {
                 fmt_str.replace_range(offset..4+offset, &format!("\x1b[0m\x1b[{color}m"));
+                current = offset+4 // "\x1b[0m".len()
             }
             write!(f, "\x1b[{color}m{fmt_str}\x1b[0m")//, self.inner)
         }
+    }
+}
+fn find_after(s: &str, sub: &str, after: usize) -> Option<usize> {
+    if after == 0 {
+        s.find(sub)
+    } else {
+        s[after..].find(sub).map(|i| i + after)
     }
 }
 impl<S: fmt::Display> fmt::Debug for ColorHolder<S> {

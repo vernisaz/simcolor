@@ -47,12 +47,12 @@ fn main()-> Result<(), Box<dyn Error>> {
     let world = "world".green().bright().bold();
     let s = "hello".strikethrough();
     println!("{s}, {world}");
-    let color = "strikethrough".strikethrough().green();
+    let color = "strikethrough".strikethrough();//.green();
     println!("{color}");
      let world = "world".bold();
     let hello_world = format!("Hello, {world}!");
     println!("{hello_world}");
-    let hello_world = format!("Hello, {world}!lalalala").red();
+    let hello_world = format!("Hello, {world}! and {color} in green").green();
     println!("{hello_world}");
     Err("The test failed successfully".red())?
 }
