@@ -44,7 +44,7 @@ fn main()-> Result<(), Box<dyn Error>> {
     // foreground and background
     let red_on_white = "red on white".red().on().white();
     println!("{}", red_on_white);
-    let world = "world".green().bright().bold();
+    let world = "world".magenta().bright();
     let s = "hello".strikethrough();
     println!("{s}, {world}");
     let color = "𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙".strikethrough().yellow();

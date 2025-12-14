@@ -10,6 +10,7 @@ pub enum Color {
     Magenta,
     Cyan,
     White,
+    Default,
     #[default]
     Notset,
     Unset,
@@ -273,7 +274,7 @@ fn get_color_num(color: &Color) -> char {
         Color::Magenta => '5',
         Color::Cyan => '6',
         Color::White => '7',
-        _ => '0'
+        _ => '9'
     }
 }
 impl<C> fmt::Display for ColorHolder<C> 
