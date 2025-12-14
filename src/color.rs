@@ -230,20 +230,36 @@ impl<T> ColorHolder<T> {
             color .push(get_color_num(&self.fg))
         }
         if self.bg != Color::Notset && self.bg != Color::Unset {
+            if !color.is_empty() {
+                color.push(';')
+            }
             if self.bright_bg {color.push_str("10")} else {color.push('4')} 
             color .push(get_color_num(&self.bg))
         }
-        if !color.is_empty() {
+        if self.underline { if !color.is_empty() {
             color.push(';')
-        }
-        if self.underline { color.push('4'); color.push(';')}
-        if self.bold { color.push('1'); color.push(';')}
-        if self.italic { color.push('3'); color.push(';')}
-        if self.blink { color.push('5'); color.push(';')}
-        if self.strikethrough { color.push('9'); color.push(';')}
-        if self.reversed { color.push('7'); color.push(';')}
-        if self.hidden { color.push('8'); color.push(';')}
-        if self.dimmed { color.push('2'); color.push(';')}
+        }color.push('4'); }
+        if self.bold { if !color.is_empty() {
+            color.push(';')
+        }color.push('1')}
+        if self.italic { if !color.is_empty() {
+            color.push(';')
+        }color.push('3')}
+        if self.blink { if !color.is_empty() {
+            color.push(';')
+        }color.push('5')}
+        if self.strikethrough { if !color.is_empty() {
+            color.push(';')
+        }color.push('9')}
+        if self.reversed { if !color.is_empty() {
+            color.push(';')
+        }color.push('7')}
+        if self.hidden { if !color.is_empty() {
+            color.push(';')
+        }color.push('8')}
+        if self.dimmed { if !color.is_empty() {
+            color.push(';')
+        }color.push('2')}
         color
     }
 }
@@ -317,7 +333,7 @@ impl<S: std::fmt::Display + std::fmt::Debug> Error for ColorHolder<S> {}
 pub static ENABLE_COLOR: LazyLock<bool> = LazyLock::new(from_env);
 
 fn from_env() -> bool {
-     (env::var("CLICOLOR").map(|val| val == "true").unwrap_or(false)
+    (env::var("CLICOLOR").map(|val| val == "true").unwrap_or(false)
         || io::stdout().is_terminal()
         || env::var("TERM").map(|val| val.contains("color")).unwrap_or(false))
         && (!env::var("NO_COLOR").map(|val| val == "true").unwrap_or(false) 
