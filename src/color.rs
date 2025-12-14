@@ -188,6 +188,7 @@ impl<T> ColorHolder<T> {
         if self.fg == Color::Notset {
             self.fg = Color::Unset
         }
+        self.bg = Color::Unset;
         self
     }
     pub fn bold(mut self) -> Self {
