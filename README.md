@@ -33,17 +33,18 @@ As usually the **Simple Color** is a very minimalistic Rust crate.
 - 
 ### Features
 
-- Safe rust, easy to use, minimal dependencies, complete test suite
+- Safe rust, easy to use, no dependencies, a complete test suite
 - Respect the `CLICOLOR`/`CLICOLOR_FORCE` behavior (see [the specs](http://bixense.com/clicolors/))
 - Respect the `NO_COLOR` behavior (see [the specs](https://no-color.org/))
 - Do note that `CLICOLOR_FORCE` overrules `NO_COLOR`, which overrules `CLICOLOR`
 - Works on Linux, MacOS, and Windows (Powershell)
 
 ## How build
-There are no dependencies, so use [RustBee](https://github.com/vernisaz/rust_bee) or Cargo.
+There are no dependencies, so use [RustBee](https://github.com/vernisaz/rust_bee) +
+[common scripts](https://github.com/vernisaz/simscript) or Cargo.
 
 ## How to use
-[test.rs](test.rs)
+The complete test suite [test.rs](test.rs) is also the documentation of usage.
 
 ## Credits
 The crate was inspired by [conqp](https://users.rust-lang.org/u/conqp)
