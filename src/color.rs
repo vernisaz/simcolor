@@ -264,6 +264,59 @@ impl<T> ColorHolder<T> {
         }color.push('2')}
         color
     }
+    
+    fn ansi_clear(&self) -> String {
+        let mut clear = String::new();
+        if self.underline { 
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('4')
+        }
+        if self.bold { 
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('1')
+        }
+        if self.italic {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('3')
+        }
+        if self.blink {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('5')
+        } 
+        if self.strikethrough {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('9')
+        }
+        if self.reversed {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('7')
+        } 
+        if self.hidden {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('8')
+        } 
+        if self.dimmed {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear.push('2'); clear.push('2')
+        }
+        clear
+    }
 }
 fn get_color_num(color: &Color) -> char {
     match color {
