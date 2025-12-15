@@ -264,7 +264,7 @@ impl<T> ColorHolder<T> {
         }color.push('2')}
         color
     }
-    
+    #[cfg(partial_reset)]
     fn ansi_clear(&self) -> String {
         let mut clear = String::new();
         if self.underline { 
@@ -315,6 +315,20 @@ impl<T> ColorHolder<T> {
             }
             clear.push('2'); clear.push('2')
         }
+        if self.fg != Color::Notset && self.fg != Color::Unset {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear .push('3');
+            clear .push(get_color_num(&Color::Unset))
+        }
+        if self.bg != Color::Notset && self.bg != Color::Unset {
+            if !clear.is_empty() {
+                clear.push(';') 
+            }
+            clear .push('4');
+            clear .push(get_color_num(&Color::Unset))
+        }
         clear
     }
 }
@@ -349,7 +363,10 @@ where
                 fmt_str.replace_range(offset..4+offset, &format!("\x1b[0m\x1b[{color}m"));
                 current = offset+4 // "\x1b[0m".len()
             }
-            write!(f, "\x1b[{color}m{fmt_str}\x1b[0m")//, self.inner)
+            #[cfg(not(partial_reset))]
+            {write!(f, "\x1b[{color}m{fmt_str}\x1b[0m")}//, self.inner)
+            #[cfg(partial_reset)]
+            {write!(f, "\x1b[{color}m{fmt_str}\x1b[{}m", self.ansi_clear())}
         }
     }
 }
