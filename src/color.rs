@@ -277,7 +277,7 @@ impl<T> ColorHolder<T> {
             if !clear.is_empty() {
                 clear.push(';') 
             }
-            clear.push('2'); clear.push('1')
+            clear.push('2'); clear.push('2')
         }
         if self.italic {
             if !clear.is_empty() {
