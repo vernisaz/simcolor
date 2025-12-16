@@ -30,7 +30,7 @@ As usually the **Simple Color** is a very minimalistic Rust crate.
 - blink
 - hidden
 - strikethrough
-- 
+
 ### Features
 
 - Safe rust, easy to use, no dependencies, a complete test suite
@@ -39,9 +39,11 @@ As usually the **Simple Color** is a very minimalistic Rust crate.
 - Do note that `CLICOLOR_FORCE` overrules `NO_COLOR`, which overrules `CLICOLOR`
 - Works on Linux, MacOS, and Windows (Powershell)
 
-## How build
+## How to build
 There are no dependencies, so use [RustBee](https://github.com/vernisaz/rust_bee) +
 [common scripts](https://github.com/vernisaz/simscript) or Cargo.
+
+If you do not use nested colorized items, then use `partial=true` (default) at building the crate.
 
 ## How to use
 The complete test suite [test.rs](test.rs) is also the documentation of usage.
