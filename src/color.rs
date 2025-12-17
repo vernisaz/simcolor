@@ -398,11 +398,28 @@ impl<T: std::fmt::LowerHex> fmt::LowerHex for ColorHolder<T> {
         Ok(())
     }
 }
-//Octal
+impl<T: std::fmt::Octal> fmt::Octal for ColorHolder<T> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        
+        if *ENABLE_COLOR {
+            let color = self.ansi();
+            if !color.is_empty() {
+                f.write_str(&format!("\x1b[{color}m"))?
+            }
+        }
+        fmt::Octal::fmt(&self.inner, f)?;
+        if *ENABLE_COLOR  {
+            f.write_str("\x1b[0m")?
+        }
+        Ok(())
+    }
+}
+//
 impl Colorized for &str {}
 impl Colorized for String {}
 impl Colorized for u32 {}
 impl Colorized for u64 {}
+impl Colorized for usize {}
 impl Colorized for i32 {}
 impl<S: std::fmt::Display + std::fmt::Debug> Error for ColorHolder<S> {}
 pub static ENABLE_COLOR: LazyLock<bool> = LazyLock::new(from_env);
