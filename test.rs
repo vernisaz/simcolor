@@ -47,7 +47,7 @@ fn main()-> Result<(), Box<dyn Error>> {
     let world = "world".magenta().bright();
     let s = "hello".strikethrough();
     println!("{s}, {world}");
-    let color = "𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙".strikethrough();//.yellow();
+    let color = "𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙".underline();//.yellow();
     println!("{color}");
      let world = "world".bold();
     let hello_world = format!("Hello, {world}!");
