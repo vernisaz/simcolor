@@ -382,7 +382,7 @@ impl<S: fmt::Display> fmt::Debug for ColorHolder<S> {
         fmt::Display::fmt(self, f)
     }
 }
-impl fmt::LowerHex for ColorHolder<u32> {
+impl<T: std::fmt::LowerHex> fmt::LowerHex for ColorHolder<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         
         if *ENABLE_COLOR {
@@ -398,9 +398,12 @@ impl fmt::LowerHex for ColorHolder<u32> {
         Ok(())
     }
 }
+//Octal
 impl Colorized for &str {}
 impl Colorized for String {}
 impl Colorized for u32 {}
+impl Colorized for u64 {}
+impl Colorized for i32 {}
 impl<S: std::fmt::Display + std::fmt::Debug> Error for ColorHolder<S> {}
 pub static ENABLE_COLOR: LazyLock<bool> = LazyLock::new(from_env);
 
