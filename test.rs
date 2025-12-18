@@ -54,5 +54,11 @@ fn main()-> Result<(), Box<dyn Error>> {
     println!("{hello_world}");
     let hello_world = format!("Hello, {world}! and {color} in green").green();
     println!("{hello_world}");
+    println!(
+        "{:<8} {} {}!",
+        "it".green(),
+        "works".blue().bold(),
+        "great".bold().yellow()
+    );
     Err("The test failed successfully".red())?
 }

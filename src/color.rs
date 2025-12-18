@@ -352,7 +352,7 @@ where
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let color = self.ansi();
         if !*ENABLE_COLOR || color.is_empty() {
-            write!(f, "{}", self.inner)
+            <C>::fmt(&self.inner, f)
         } else {
             let mut fmt_str = format!("{}", self.inner);
             while let Some(stripped_str) = fmt_str.strip_suffix("\x1b[0m") {
@@ -364,9 +364,13 @@ where
                 current = offset+4 // "\x1b[0m".len()
             }
             #[cfg(not(partial_reset))]
-            {write!(f, "\x1b[{color}m{fmt_str}\x1b[0m")}//, self.inner)
+            {write!(f, "\x1b[{color}m{fmt_str}\x1b[0m")}
             #[cfg(partial_reset)]
-            {write!(f, "\x1b[{color}m{fmt_str}\x1b[{}m", self.ansi_clear())}
+            {
+                f.write_str(&format!("\x1b[{color}m"))?;
+                <C>::fmt(&self.inner, f)?;
+                f.write_str(&format!("\x1b[{}m", self.ansi_clear()))
+            }
         }
     }
 }
