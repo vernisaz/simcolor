@@ -4,10 +4,9 @@
 When you implement CLI app in Rust and want to see a colorized output,
  the crate will help. 
 
-You will find two absolutely beautiful crates for the task [Colored](https://github.com/colored-rs/colored)
-and [OWO-Colors](https://github.com/owo-colors/owo-colors). So, this crate was inspired by the giants.
+Although there are several crates for the task, they look too complex for me.
 
-As usually the **Simple Color** is a very minimalistic Rust crate.
+**Simple Color** is a very minimalistic Rust crate doing the job well.
 
 ### Colors:
 
