@@ -26,9 +26,21 @@ fn main()-> Result<(), Box<dyn Error>> {
     println!("{}", "blue".blue().bright());
     println!("{}", "black".black().bright());
     println!("{}", "red".red().bright());
-    println!("{}", "magenta".magenta().bright());
+    println!("{}", "magenta".bright().magenta());
     println!("{}", "white".white().bright());
     println!("{}", "cyan".cyan().bright());
+    
+    println!("{}{}", "\nBackgrounds\n".black().on().white(), "-------".yellow());
+    println!("{}", "on green".on().green());
+    println!("{}", "on yellow".on().yellow());
+    println!("{}", "on blue".on().blue());
+    println!("{}", "on black".white().on().black());
+
+    println!("{}", "on red".on().red());
+    println!("{}", "on magenta".on().magenta());
+    println!("{}", "on white".on().white());
+    println!("{}", "on cyan".on().cyan());
+
 
     println!("\nStyles\n-------");
     println!("{}", "underline".underline());
