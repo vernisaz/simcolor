@@ -15,7 +15,7 @@ Although there are several crates for the task, they look too complex for me.
 - green
 - yellow
 - blue
-- magenta (or purple)
+- magenta
 - cyan
 - white
 
@@ -42,7 +42,7 @@ Although there are several crates for the task, they look too complex for me.
 There are no dependencies, so use [RustBee](https://github.com/vernisaz/rust_bee) +
 [common scripts](https://github.com/vernisaz/simscript) or Cargo.
 
-If you do not use nested colorized items, then use `partial=true` (default) at building the crate.
+If you do not to use nested colorized items, then use `partial=true` (default) at building the crate.
 
 ## How to use
 The complete test suite [test.rs](test.rs) is also the documentation of usage.
