@@ -1,6 +1,6 @@
 # Simple Color
 
-## What it is and why
+## What is it and why
 When you implement CLI app in Rust and want to see a colorized output,
  the crate will help. 
 
@@ -38,7 +38,7 @@ Although there are several crates for the task, they look too complex for me.
 - Respect the `CLICOLOR`/`CLICOLOR_FORCE` behavior (see [the specs](http://bixense.com/clicolors/))
 - Respect the `NO_COLOR` behavior (see [the specs](https://no-color.org/))
 - Do note that `CLICOLOR_FORCE` overrules `NO_COLOR`, which overrules `CLICOLOR`
-- Works on Linux, MacOS, and Windows (Powershell)
+- Works on Linux/FreeBSD, MacOS, and Windows (cmd & Powershell)
 
 ## How to build
 There are no dependencies, so use [RustBee](https://github.com/vernisaz/rust_bee) +
