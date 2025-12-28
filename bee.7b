@@ -11,6 +11,11 @@ common_test =..${~/~}simscript${~/~}comm-test.7b:file
 crate_dir=..${~/~}crates
 
 version=1.04b011
+if {
+	eq(partial,true) then {
+		assign(version,${version}p)
+	}
+}
 set_env(VERSION,version)
 if {
 	eq(partial,true) then {
