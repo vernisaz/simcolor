@@ -1,4 +1,4 @@
-use std::{fmt,env,io::{IsTerminal,self},sync::LazyLock,error::Error};
+use std::{fmt,env,io::{IsTerminal,self},sync::LazyLock,error::Error,fmt::Write};
 
 #[derive(Default, Debug, Clone, PartialEq)] 
 pub enum Color {
@@ -14,6 +14,9 @@ pub enum Color {
     #[default]
     Notset,
     Unset,
+    Gray(u8),
+    Palette216(u8),
+    True(u8,u8,u8)
 }
 #[derive(Clone)] //Debug, 
 pub struct ColorHolder<B>{
@@ -91,6 +94,23 @@ pub trait Colorized : Sized {
     }
     fn cyan(self) -> ColorHolder<Self> {
           self.color(Color::Cyan)
+    }
+    fn gray(self, gray:u8) -> ColorHolder<Self> {
+        if gray < 24 {
+            self.color(Color::Gray(gray+232))
+        } else {
+            self.attribute()
+        }
+    }
+    fn color_num(self, num:u8) -> ColorHolder<Self> {
+        if num <= 232 && num >= 16 {
+            self.color(Color::Palette216(num))
+        } else {
+            self.attribute()
+        }
+    }
+    fn rgb(self, r:u8, g:u8, b:u8) -> ColorHolder<Self> {
+        self.color(Color::True(r,g,b))
     }
     fn blink(self) -> ColorHolder<Self> {
           let mut res = self.attribute();
@@ -176,6 +196,23 @@ impl<T> ColorHolder<T> {
     pub fn green(self) -> Self {
         self.color(Color::Green)
     }
+    pub fn gray(self, shade: u8) -> Self {
+        if shade < 24 {
+            self.color(Color::Gray(shade+232))
+        } else {
+            self
+        }
+    }
+    pub fn color_num(self, num: u8) -> Self {
+        if num < 232 && num >= 16 {
+            self.color(Color::Palette216(num))
+        } else {
+            self
+        }
+    }
+    pub fn rgb(self, r: u8, g: u8, b: u8) -> Self {
+        self.color(Color::True(r,g,b))
+    }
     pub fn bright(mut self) -> Self {
         if self.bg != Color::Notset {
             self.bright_bg = true
@@ -227,16 +264,33 @@ impl<T> ColorHolder<T> {
 
     fn ansi(&self) -> String {
         let mut color = String::new();
+        // TODO consolidate as set_color(foreground:bool, color: Color)
         if self.fg != Color::Notset && self.fg != Color::Unset {
-            if self.bright {color.push('9')} else {color.push('3')} 
-            color .push(get_color_num(&self.fg))
+            match self.fg {
+                Color::Gray(gray) => {
+                    let _ = write!(color, "38;5;{gray}");
+                }
+                Color::Palette216(palette) => write!{color, "38;5;{palette}"}.unwrap(),
+                Color::True(r,g,b) => write!{color, "38;2;{r};{g};{b}"}.unwrap(),
+               _ => { if self.bright {color.push('9')} else {color.push('3')} 
+                color .push(get_color_num(&self.fg)) }
+            }
         }
         if self.bg != Color::Notset && self.bg != Color::Unset {
             if !color.is_empty() {
                 color.push(';')
             }
-            if self.bright_bg {color.push_str("10")} else {color.push('4')} 
-            color .push(get_color_num(&self.bg))
+            match self.bg {
+                Color::Gray(gray) => {
+                    let _ = write!(color, "48;5;{gray}");
+                }
+                Color::Palette216(palette) => write!{color, "48;5;{palette}"}.unwrap(),
+                Color::True(r,g,b) => write!{color, "48;2;{r};{g};{b}"}.unwrap(),
+               _ => { 
+                   if self.bright_bg {color.push_str("10")} else {color.push('4')} 
+                   color .push(get_color_num(&self.bg))
+               }
+            }
         }
         if self.underline { if !color.is_empty() {
             color.push(';')

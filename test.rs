@@ -72,5 +72,9 @@ fn main()-> Result<(), Box<dyn Error>> {
         "works".blue().bold(),
         "great".bold().yellow()
     );
+    for shade in 0..24 {
+        println!("{}", format!("Shade {shade}").gray(shade))
+    }
+    println!("{}", "orange".color_num(214).on().rgb(103, 156, 117));
     Err("The test failed successfully".red())?
 }
