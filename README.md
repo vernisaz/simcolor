@@ -18,7 +18,7 @@ Although there are several crates for the task, they look too complex for me.
 - magenta
 - cyan
 - white
-- colors from 216 colors scheme
+- colors from [216 colors scheme](https://hexdocs.pm/color_palette/color_table.html)
 - "true" (RGB)
 
 ### Styles:
