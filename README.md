@@ -18,6 +18,8 @@ Although there are several crates for the task, they look too complex for me.
 - magenta
 - cyan
 - white
+- colors from 216 colors scheme
+- "true" (RGB)
 
 ### Styles:
 
