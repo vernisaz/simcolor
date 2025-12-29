@@ -171,7 +171,11 @@ impl<T> ColorHolder<T> {
         }
         self
     }
-    
+    /// Change current fore/back color to the blue
+    ///
+    /// Consequent this call will update the color to the last value
+    ///
+    /// let blue = "blue".blue();
     pub fn blue(self) -> Self {
         self.color(Color::Blue)
     }
