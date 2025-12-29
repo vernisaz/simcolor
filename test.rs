@@ -75,6 +75,6 @@ fn main()-> Result<(), Box<dyn Error>> {
     for shade in 0..24 {
         println!("{}", format!("Shade {shade}").gray(shade))
     }
-    println!("{}", "orange".color_num(214).on().rgb(103, 156, 117));
+    println!("{}", "orange".color_num(214).on().rgb_color((103, 156, 117)));
     Err("The test failed successfully".red())?
 }
