@@ -171,7 +171,7 @@ impl<T> ColorHolder<T> {
         }
         self
     }
-    /// Change current fore/back color to the blue
+    /// Change the current fore/back color to the blue
     ///
     /// Consequent this call will update the color to the last value
     ///
@@ -200,6 +200,13 @@ impl<T> ColorHolder<T> {
     pub fn green(self) -> Self {
         self.color(Color::Green)
     }
+    /// Change the current fore/back color to a shade of gray specified by the parameter
+    ///
+    /// 24 grades from 0 to 23 are available
+    ///
+    /// Consequent this call will update the color to the last value
+    ///
+    /// let gray = "gray".gray(10);
     pub fn gray(self, shade: u8) -> Self {
         if shade < 24 {
             self.color(Color::Gray(shade+232))
@@ -207,6 +214,11 @@ impl<T> ColorHolder<T> {
             self
         }
     }
+    /// Change the current fore/back color to a color from the 216 colors palette
+    ///
+    /// Consequent this call will update the color to the last value
+    ///
+    /// let orange = "orange".color_num(214);
     pub fn color_num(self, num: u8) -> Self {
         if (16..232).contains(&num) {
             self.color(Color::Palette216(num))
@@ -214,6 +226,11 @@ impl<T> ColorHolder<T> {
             self
         }
     }
+    /// Change the current fore/back color to a color based on RGB value
+    ///
+    /// Consequent this call will update the color to the last value
+    ///
+    /// let greenish = "greenish pale".rgb(108, 140, 107);
     pub fn rgb(self, r: u8, g: u8, b: u8) -> Self {
         self.color(Color::True(r,g,b))
     }
