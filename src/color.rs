@@ -112,7 +112,7 @@ pub trait Colorized : Sized {
     fn rgb(self, r:u8, g:u8, b:u8) -> ColorHolder<Self> {
         self.color(Color::True(r,g,b))
     }
-    fn rgb_color(self, color:(u8, u8, u8)) -> ColorHolder<Self> {
+    fn rgb_color(self, color:&(u8, u8, u8)) -> ColorHolder<Self> {
         self.color(Color::True(color.0,color.1,color.2))
     }
     fn blink(self) -> ColorHolder<Self> {
@@ -237,7 +237,7 @@ impl<T> ColorHolder<T> {
     pub fn rgb(self, r: u8, g: u8, b: u8) -> Self {
         self.color(Color::True(r,g,b))
     }
-    pub fn rgb_color(self, color:(u8, u8, u8)) -> Self {
+    pub fn rgb_color(self, color:&(u8, u8, u8)) -> Self {
         self.color(Color::True(color.0,color.1,color.2))
     }
     pub fn bright(mut self) -> Self {
