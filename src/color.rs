@@ -103,7 +103,7 @@ pub trait Colorized : Sized {
         }
     }
     fn color_num(self, num:u8) -> ColorHolder<Self> {
-        if num <= 232 && num >= 16 {
+        if (16..=232).contains(&num) {
             self.color(Color::Palette216(num))
         } else {
             self.attribute()
@@ -204,7 +204,7 @@ impl<T> ColorHolder<T> {
         }
     }
     pub fn color_num(self, num: u8) -> Self {
-        if num < 232 && num >= 16 {
+        if (16..=232).contains(&num) {
             self.color(Color::Palette216(num))
         } else {
             self
