@@ -49,5 +49,9 @@ If you do not to use nested colorized items, then use `partial=true` (default) a
 ## How to use
 The complete test suite [test.rs](test.rs) is also the documentation of usage.
 
+## Where it is used
+- Build script interpreter [RustBee](https://github.com/vernisaz/rust_bee)
+- Terminal crate for web [Simple Terminal](https://github.com/vernisaz/simterminal/tree/master)
+
 ## Credits
 The crate was inspired by [conqp](https://users.rust-lang.org/u/conqp)

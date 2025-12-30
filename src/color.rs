@@ -95,6 +95,9 @@ pub trait Colorized : Sized {
     fn cyan(self) -> ColorHolder<Self> {
           self.color(Color::Cyan)
     }
+    fn default(self) -> ColorHolder<Self> {
+          self.color(Color::Default)
+    }
     fn gray(self, gray:u8) -> ColorHolder<Self> {
         if gray < 24 {
             self.color(Color::Gray(gray+232))
