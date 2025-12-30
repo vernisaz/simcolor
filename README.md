@@ -34,7 +34,7 @@ Although there are several crates for the task, they look too complex for me.
 
 ### Features
 
-- Safe rust, easy to use, no dependencies, a complete test suite
+- Safe Rust, easy to use, no dependencies, a complete test suite
 - Respect the `CLICOLOR`/`CLICOLOR_FORCE` behavior (see [the specs](http://bixense.com/clicolors/))
 - Respect the `NO_COLOR` behavior (see [the specs](https://no-color.org/))
 - Do note that `CLICOLOR_FORCE` overrules `NO_COLOR`, which overrules `CLICOLOR`
