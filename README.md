@@ -52,6 +52,7 @@ The complete test suite [test.rs](test.rs) is also the documentation of usage.
 ## Where it is used
 - Build script interpreter [RustBee](https://github.com/vernisaz/rust_bee)
 - Terminal crate for web [Simple Terminal](https://github.com/vernisaz/simterminal/tree/master)
+- Simple log [tail](https://github.com/vernisaz/simlogtail)
 
 ## Credits
 The crate was inspired by [conqp](https://users.rust-lang.org/u/conqp)
