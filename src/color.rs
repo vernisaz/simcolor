@@ -10,10 +10,9 @@ pub enum Color {
     Magenta,
     Cyan,
     White,
-    Default,
     #[default]
     Notset,
-    Unset,
+    Unset, // inherited
     Gray(u8),
     Palette216(u8),
     True(u8,u8,u8)
@@ -96,7 +95,7 @@ pub trait Colorized : Sized {
           self.color(Color::Cyan)
     }
     fn default(self) -> ColorHolder<Self> {
-          self.color(Color::Default)
+          self.color(Color::default())
     }
     fn gray(self, gray:u8) -> ColorHolder<Self> {
         if gray < 24 {
