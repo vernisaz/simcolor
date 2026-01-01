@@ -6,7 +6,7 @@ When you implement CLI app in Rust and want to see a colorized output,
 
 Although there are several crates for the task, they look too complex for me.
 
-**Simple Color** is a very minimalistic Rust crate doing the job well.
+**Simple Color** is a very minimalistic Rust crate for colorizing a terminal out.
 
 ### Colors:
 
@@ -18,7 +18,9 @@ Although there are several crates for the task, they look too complex for me.
 - magenta
 - cyan
 - white
+- and 8 bright counterparts
 - colors from [216 colors scheme](https://hexdocs.pm/color_palette/color_table.html)
+- 24 gray shades
 - "true" (RGB)
 
 ### Styles:
