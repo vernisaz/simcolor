@@ -1,4 +1,6 @@
-use std::{fmt,env,io::{IsTerminal,self},sync::LazyLock,error::Error,fmt::Write};
+use std::{fmt,env,io::{IsTerminal,self},sync::LazyLock,error::Error,fmt::Write,
+    borrow::Cow,
+};
 
 #[derive(Default, Debug, Clone, PartialEq)] 
 pub enum Color {
@@ -508,6 +510,7 @@ impl Colorized for u32 {}
 impl Colorized for u64 {}
 impl Colorized for usize {}
 impl Colorized for i32 {}
+impl Colorized for Cow<'_, String> {}
 impl<S: std::fmt::Display + std::fmt::Debug> Error for ColorHolder<S> {}
 pub static ENABLE_COLOR: LazyLock<bool> = LazyLock::new(from_env);
 
