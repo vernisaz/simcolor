@@ -76,5 +76,5 @@ fn main()-> Result<(), Box<dyn Error>> {
         println!("{}", format!("Shade {shade}").gray(shade))
     }
     println!("{}", "orange".color_num(214).on().rgb_color(&(103, 156, 117)));
-    Err("The test failed successfully".red())?
+    Err(Box::new("The test failed successfully".red()))
 }
