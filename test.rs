@@ -1,9 +1,8 @@
 extern crate simcolor;
+use simcolor::Colorized;
 use std::error::Error;
-use simcolor::{Colorized};
 
-
-fn main()-> Result<(), Box<dyn Error>> {
+fn main() -> Result<(), Box<dyn Error>> {
     // Foreground colors
     println!("My number is {:#x}!", 10.green());
     // Background colors
@@ -29,8 +28,12 @@ fn main()-> Result<(), Box<dyn Error>> {
     println!("{}", "magenta".bright().magenta());
     println!("{}", "white".white().bright());
     println!("{}", "cyan".cyan().bright());
-    
-    println!("{}{}", "\nBackgrounds\n".black().on().white(), "-------".yellow());
+
+    println!(
+        "{}{}",
+        "\nBackgrounds\n".black().on().white(),
+        "-------".yellow()
+    );
     println!("{}", "on green".on().green());
     println!("{}", "on yellow".on().yellow());
     println!("{}", "on blue".on().blue());
@@ -41,7 +44,6 @@ fn main()-> Result<(), Box<dyn Error>> {
     println!("{}", "on white".on().white());
     println!("{}", "on cyan".on().cyan());
 
-
     println!("\nStyles\n-------");
     println!("{}", "underline".underline());
     println!("{}", "bold".bold());
@@ -51,17 +53,21 @@ fn main()-> Result<(), Box<dyn Error>> {
     println!("1{}3", "2".hidden());
     println!("{}", "blink".blink());
     println!("{}", "blink fast".blink_fast());
-    println!("{} {}", "dimmed".bright().green().dimmed(), "text".bright().green());
-    
+    println!(
+        "{} {}",
+        "dimmed".bright().green().dimmed(),
+        "text".bright().green()
+    );
+
     // foreground and background
     let red_on_white = "red on white".red().on().white();
     println!("{}", red_on_white);
     let world = "world".magenta().bright();
     let s = "hello".strikethrough();
     println!("{s}, {world}");
-    let color = "𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙".underline();//.yellow();
+    let color = "𝕾𝖐𝖎𝖇𝖎𝖉𝖎 𝕿𝖔𝖎𝖑𝖊𝖙".underline(); //.yellow();
     println!("{color}");
-     let world = "world".bold();
+    let world = "world".bold();
     let hello_world = format!("Hello, {world}!");
     println!("{hello_world}");
     let hello_world = format!("Hello, {world}! and {color} in green").green();
@@ -75,6 +81,9 @@ fn main()-> Result<(), Box<dyn Error>> {
     for shade in 0..24 {
         println!("{}", format!("Shade {shade}").gray(shade))
     }
-    println!("{}", "orange".color_num(214).on().rgb_color(&(103, 156, 117)));
+    println!(
+        "{}",
+        "orange".color_num(214).on().rgb_color(&(103, 156, 117))
+    );
     Err(Box::new("The test failed successfully".red()))
 }
