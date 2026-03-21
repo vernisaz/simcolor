@@ -1,10 +1,11 @@
 # Simple Color
 
 ## What is it and why
-When you implement CLI app in Rust and want to see a colorized output,
- the crate will help. 
 
-Although there are several crates for the task, they look too complex for me.
+The crate will help,
+when you implement CLI app in Rust and want to see a colorized output.
+
+Although there are several crates for the task, the crate can be used instead of in many cases.
 
 **Simple Color** is a very minimalistic Rust crate for colorizing a terminal out.
 
@@ -44,12 +45,12 @@ Although there are several crates for the task, they look too complex for me.
 
 ## How to build
 There are no dependencies, so use [RustBee](https://github.com/vernisaz/rust_bee) +
-[common scripts](https://github.com/vernisaz/simscript) or Cargo.
+[common scripts](https://github.com/vernisaz/simscript) or Cargo (just create .toml).
 
-If you do not to use nested colorized items, then use `partial=true` (default) at building the crate.
+If you do not to use nested colorized items, then use `partial=true` (*default*) at building the crate.
 
 ## How to use
-The complete test suite [test.rs](test.rs) is also the documentation of usage.
+The complete test suite [test.rs](test.rs) is also the documentation of a usage.
 
 ## Where it is used
 - Build script interpreter [RustBee](https://github.com/vernisaz/rust_bee)
