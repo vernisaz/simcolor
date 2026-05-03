@@ -1,3 +1,4 @@
+//! **Simple Color** is a very minimalistic Rust crate for colorizing a terminal out.
 use std::{fmt,env,io::{IsTerminal,self},sync::LazyLock,error::Error,fmt::Write,
     borrow::Cow,
 };
